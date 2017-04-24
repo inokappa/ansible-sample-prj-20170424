@@ -6,13 +6,10 @@ phases:
       - pip install -r requirements.txt
   build:
     commands:
-      - docker run -d --name=container01 -p 8000:8000 debian:jessie-slim
-      - docker exec container01 apt-get update
-      - docker exec container01 apt-get -y install python
-      - ansible-playbook default.yml --syntax-check
-      - ansible-playbook default.yml --check
-      - ansible-playbook default.yml --inventory-file=inventories/hosts
+      - ansible-playbook dev.yml --inventory-file=inventories/hosts --syntax-check
+      - ansible-playbook dev.yml --inventory-file=inventories/hosts --check
+      - ansible-playbook dev.yml --inventory-file=inventories/hosts
       - curl 127.0.0.1:8000
   post_build:
     commands:
-      - docker ps -a
+      - echo "end"

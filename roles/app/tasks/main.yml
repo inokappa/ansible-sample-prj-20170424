@@ -4,7 +4,7 @@
   - ./start.sh
 
 - name: output hostname
-  shell: hostname -s /tmp/index.html
+  shell: echo 'demo' > /tmp/index.html
 
 - name: python tiny web server start
   shell: |

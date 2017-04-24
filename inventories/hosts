@@ -1,2 +1,5 @@
+[myhost]
+myhost ansible_host=localhost
+
 [containers]
 container01
