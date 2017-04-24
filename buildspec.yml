@@ -10,7 +10,7 @@ phases:
       - docker run -d --name=container01 -p 8000:8000 python:2.7.13-slim
       - ansible-playbook default.yml --syntax-check
       - ansible-playbook default.yml --check
-      - ansible-playbook default.yml
+      - ansible-playbook default.yml --inventory-file=inventories/hosts
       - curl 127.0.0.1:8000
   post_build:
     commands:
