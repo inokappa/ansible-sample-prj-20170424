@@ -1,0 +1,18 @@
+- name: start.sh file upload
+  copy: src={{ item }} dest=/tmp/ owner=root group=root mode=0755
+  with_fileglob:
+  - ./start.sh
+
+- name: output hostname
+  shell: hostname -s /tmp/index.html
+
+- name: python tiny web server start
+  shell: |
+    /tmp/start.sh
+  args:
+    chdir: /tmp/
+  async: 15
+  poll: 0
+  register: chk
+
+- debug: var=chk

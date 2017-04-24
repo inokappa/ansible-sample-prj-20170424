@@ -1,0 +1,14 @@
+version: 0.1
+
+phases:
+  pre_build:
+    commands:
+      - pip install -r requirements.txt
+      - docker pull python
+  build:
+    commands:
+      - docker run --name=mypython --port 8000:8000 python
+      - ansible-playbook default.yml --check
+  post_build:
+    commands:
+      - curl 127.0.0.1:8000
