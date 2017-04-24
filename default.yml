@@ -1,4 +1,4 @@
-- hosts: app
+- hosts: container01
   connection: docker
   roles:
     - app

@@ -7,7 +7,7 @@ phases:
       - docker pull python
   build:
     commands:
-      - docker run -d --name=mypython -p 8000:8000 python:2.7.13-slim
+      - docker run -d --name=container01 -p 8000:8000 python:2.7.13-slim
       - ansible-playbook default.yml --syntax-check
       - ansible-playbook default.yml --check
       - ansible-playbook default.yml
