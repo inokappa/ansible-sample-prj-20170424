@@ -10,7 +10,7 @@ phases:
       - ansible-playbook dev.yml --inventory-file=inventories/hosts --syntax-check
       - ansible-playbook dev.yml --inventory-file=inventories/hosts --check
       - ansible-playbook dev.yml --inventory-file=inventories/hosts
-      - curl 127.0.0.1:8000
+      - python -c "import urllib2;r=urllib2.urlopen('http://127.0.0.1:8000');print r.info();"
   post_build:
     commands:
       - echo "end"
