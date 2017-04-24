@@ -13,4 +13,4 @@ phases:
       - ansible-playbook dev.yml --inventory-file=inventories/hosts
   post_build:
     commands:
-      - curl 127.0.0.1:8000
+      - echo "end."
