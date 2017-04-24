@@ -7,8 +7,10 @@ phases:
       - docker pull python
   build:
     commands:
-      - docker run --name=mypython --port 8000:8000 python
-      - ansible-playbook default.yml --check
+      - docker create --name=mypython -p 8000:8000 python
+      - ansible-playbook default.yml --syntax-check
+      - ansible-playbook default.yml -C
+      - ansible-playbook default.yml
   post_build:
     commands:
       - curl 127.0.0.1:8000
