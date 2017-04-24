@@ -4,10 +4,11 @@ phases:
   pre_build:
     commands:
       - pip install -r requirements.txt
-      - docker pull python
   build:
     commands:
-      - docker run -d --name=container01 -p 8000:8000 python:2.7.13-slim
+      - docker run -d --name=container01 -p 8000:8000 debian:jessie-slim
+      - docker exec container01 apt-get update
+      - docker exec container01 apt-get -y install python
       - ansible-playbook default.yml --syntax-check
       - ansible-playbook default.yml --check
       - ansible-playbook default.yml --inventory-file=inventories/hosts
