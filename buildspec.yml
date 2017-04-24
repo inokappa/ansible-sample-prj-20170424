@@ -4,12 +4,13 @@ phases:
   pre_build:
     commands:
       - pip install -r requirements.txt
+      - apt-get update
+      - apt-get install -y curl
   build:
     commands:
       - ansible-playbook dev.yml --inventory-file=inventories/hosts --syntax-check
       - ansible-playbook dev.yml --inventory-file=inventories/hosts --check
       - ansible-playbook dev.yml --inventory-file=inventories/hosts
-      - python -c "import urllib2;r=urllib2.urlopen('http://127.0.0.1:8000');print r.info();"
   post_build:
     commands:
-      - echo "end"
+      - curl 127.0.0.1:8000
